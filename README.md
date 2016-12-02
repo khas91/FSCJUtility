@@ -4,7 +4,7 @@ The purpose of this project is to provide utility classes for use in other proje
 Orion Terms (YYYYT), on the other hand, have years based on the last year in which the academic year containing the term takes place.
 "20151" for instance, is Fall of the 2014-15 academic year, and hence takes place in Fall 2014.
 
-The TermLogic namespace contains a class for both of these terms, with more comming. They are derived from a common abstract class and hence can be compared with each other. The upshot of which is that new OrionTerm("20151") == new StateReportingTermShort("214") evaluates to true.
+The TermLogic namespace contains a class for both of these two types of terms, with more coming. They are derived from a common abstract class and hence can be compared with each other. The upshot of which is that new OrionTerm("20151") == new StateReportingTermShort("214") evaluates to true.
 
 Several of the primitive operators have been overloaded and can be used in conjunction with Terms, including:
 +,-,==,!=,ToString(),GetHashCode(),++,<=,>=
