@@ -57,11 +57,7 @@ namespace OrionTestProgram
             OrionTerm j = new OrionTerm("20172");
             OrionTerm ij = new OrionTerm("20001");
 
-            while (ij < j)
-            {
-                Console.WriteLine(ij);
-                ij++;
-            }
+            Console.WriteLine(j - ij);
             
 
 /*

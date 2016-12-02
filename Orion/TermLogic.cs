@@ -154,6 +154,11 @@ namespace TermLogic
         }
         protected OrionTerm doAddition(int numTerms)
         {
+            if (numTerms < 0)
+            {
+                throw new ArgumentException();
+            }
+
             int term = this.term;
             int year = this.year;
 
@@ -175,6 +180,39 @@ namespace TermLogic
             }
 
             return new OrionTerm(year, term);
+        }
+        public static int operator -(OrionTerm term1, OrionTerm term2)
+        {
+            OrionTerm largerTerm = term1 > term2 ? term1 : term2;
+            OrionTerm smallerTerm = term1 > term2 ? term2 : term1;
+
+            int largerYear = largerTerm.year;
+            int largerTermTerm = largerTerm.term;
+            int smallerYear = smallerTerm.year;
+            int smallerTermTerm = smallerTerm.term;
+
+            int difference = 0;
+
+            while (largerYear != smallerYear || smallerTermTerm != largerTermTerm)
+            {
+                if (largerTermTerm == 1)
+                {
+                    largerTermTerm = 3;
+                }
+                else if (largerTermTerm == 2)
+                {
+                    largerTermTerm--;
+                    largerYear--;
+                }
+                else
+                {
+                    largerTermTerm--;
+                }
+
+                difference++;
+            }
+
+            return difference;
         }
         public StateReportingTermShort ToStateReportingTermShort()
         {
@@ -214,6 +252,11 @@ namespace TermLogic
 
         protected StateReportingTermShort doAddition(int numTerms)
         {
+            if (numTerms < 0)
+            {
+                throw new ArgumentException();
+            }
+
             int term = this.term;
             int year = this.year;
 
@@ -237,7 +280,39 @@ namespace TermLogic
 
             return new StateReportingTermShort(year, term);
         }
+        public static int operator -(StateReportingTermShort term1, StateReportingTermShort term2)
+        {
+            StateReportingTermShort largerTerm = term1 > term2 ? term1 : term2;
+            StateReportingTermShort smallerTerm = term1 > term2 ? term2 : term1;
 
+            int largerYear = largerTerm.year;
+            int largerTermTerm = largerTerm.term;
+            int smallerYear = smallerTerm.year;
+            int smallerTermTerm = smallerTerm.term;
+
+            int difference = 0;
+
+            while (largerYear != smallerYear && smallerTermTerm != largerTermTerm)
+            {
+                if (largerTermTerm == 1)
+                {
+                    largerTermTerm = 3;
+                }
+                else if (largerTermTerm == 2)
+                {
+                    largerTermTerm--;
+                    largerYear--;
+                }
+                else
+                {
+                    largerTermTerm--;
+                }
+
+                difference++;
+            }
+
+            return difference;
+        }
         public OrionTerm ToOrionTerm()
         {
             return new OrionTerm(this.year, this.term);
