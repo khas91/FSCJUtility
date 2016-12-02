@@ -52,12 +52,17 @@ namespace OrionTestProgram
                 Console.WriteLine(ter.ToString() + ": " + dict[ter]);
             }
             */
-            Console.WriteLine("20001".Substring(4, 1));
 
             OrionTerm j = new OrionTerm("20172");
             OrionTerm ij = new OrionTerm("20001");
 
-            Console.WriteLine(j - ij);
+            for (OrionTerm i = new OrionTerm("20001"); i < j; i++)
+            {
+                Console.WriteLine(i.ToString() + ":" + i.ToStateReportingTermShort().ToString() + ":" 
+                    + i.getAcademicYear().ToString() + ":" + i.getStateReportingYear().ToString());                
+            }
+
+            StateReportingYear year = 1 + ij.getStateReportingYear() + 1;
             
 
 /*

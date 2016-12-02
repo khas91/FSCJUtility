@@ -5,20 +5,151 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TermLogic
-{    
+{
+    public class StateReportingYear
+    {
+        internal int year;
+
+        internal StateReportingYear(int year)
+        {
+            this.year = year;
+        }
+        public StateReportingYear nextReportingYear()
+        {
+            return new StateReportingYear(this.year + 1);
+        }
+        public StateReportingYear prevReportingYear()
+        {
+            return new StateReportingYear(this.year - 1);
+        }
+        public override string ToString()
+        {
+            return (year - 1).ToString() + "-" + year.ToString().Substring(2, 2);
+        }
+        public static StateReportingYear operator +(StateReportingYear sYear, int numYears)
+        {
+            return sYear.doAddition(numYears);
+        }
+        public static StateReportingYear operator +(int numYears, StateReportingYear sYear)
+        {
+            return sYear.doAddition(numYears);
+        }
+        public StateReportingYear doAddition(int numYears)
+        {
+            return new StateReportingYear(this.year + numYears);
+        }
+        public static bool operator ==(StateReportingYear year1, StateReportingYear year2)
+        {
+            return year1.year == year2.year;
+        }
+        public static bool operator !=(StateReportingYear year1, StateReportingYear year2)
+        {
+            return !(year1 == year2);
+        }
+        public override bool Equals(object obj)
+        {
+            if (!(obj is StateReportingTermShort))
+            {
+                return false;
+            }
+            return this == (StateReportingYear) obj;
+        }
+        public override int GetHashCode()
+        {
+            return this.year;
+        }
+        public bool contains(Term term)
+        {
+            if (term.term == 1 || term.term == 2)
+            {
+                return this.year == (term.year + 1);
+            }
+            else
+            {
+                return this.year == term.year;
+            }
+        }
+    }
+    public class AcademicYear
+    {
+        internal int year;
+
+        internal AcademicYear(int year)
+        {
+            this.year = year;
+        }
+        public AcademicYear nextAcademicYear()
+        {
+            return new AcademicYear(this.year + 1);
+        }
+        public AcademicYear prevAcademicYear()
+        {
+            return new AcademicYear(this.year - 1);
+        }
+        public override string ToString()
+        {
+            return (year - 1).ToString() + "-" + year.ToString().Substring(2, 2);
+        }
+        public static AcademicYear operator +(AcademicYear sYear, int numYears)
+        {
+            return sYear.doAddition(numYears);
+        }
+        public static AcademicYear operator +(int numYears, AcademicYear sYear)
+        {
+            return sYear.doAddition(numYears);
+        }
+        public AcademicYear doAddition(int numYears)
+        {
+            return new AcademicYear(this.year + numYears);
+        }
+        public static bool operator ==(AcademicYear year1, AcademicYear year2)
+        {
+            return year1.year == year2.year;
+        }
+        public static bool operator !=(AcademicYear year1, AcademicYear year2)
+        {
+            return !(year1 == year2);
+        }
+        public override bool Equals(object obj)
+        {
+            if (!(obj is AcademicYear))
+            {
+                return false;
+            }
+            return this == (AcademicYear)obj;
+        }
+        public override int GetHashCode()
+        {
+            return this.year;
+        }
+        public bool contains(Term term)
+        {
+            if (term.term == 1)
+            {
+                return this.year == (term.year + 1);
+            }
+            else
+            {
+                return this.year == term.year;
+            }
+        }
+    }
+
     public abstract class Term
     {
-        protected enum TermName
+        internal enum TermName
         {
-            FALL,
-            SPRING,
-            SUMMER
+            FALL = 1,
+            SPRING = 2,
+            SUMMER = 3
         }
 
-        protected String rep;
-        protected int year;
-        protected int term;
-        protected TermName name;
+        internal String rep;
+        internal int year;
+        internal int term;
+        internal TermName name;
+        internal StateReportingYear stateReportingYear;
+        internal AcademicYear academicYear;
 
         public Term(int year, int term)
         {
@@ -35,14 +166,20 @@ namespace TermLogic
             if (term == 1)
             {
                 name = TermName.FALL;
+                stateReportingYear = new StateReportingYear(year + 1);
+                academicYear = new AcademicYear(year + 1);
             }
             else if (term == 2)
             {
                 name = TermName.SPRING;
+                stateReportingYear = new StateReportingYear(year);
+                academicYear = new AcademicYear(year);
             }
             else
             {
                 name = TermName.SUMMER;
+                stateReportingYear = new StateReportingYear(year + 1);
+                academicYear = new AcademicYear(year);
             }
 
             makeRep();
@@ -93,6 +230,14 @@ namespace TermLogic
         public static bool operator >=(Term term1, Term term2)
         {
             return (term1 > term2) || (term1 == term2);
+        }
+        public AcademicYear getAcademicYear()
+        {
+            return this.academicYear;
+        }
+        public StateReportingYear getStateReportingYear()
+        {
+            return this.stateReportingYear;
         }
         public override string ToString()
         {
