@@ -187,11 +187,11 @@ namespace TermLogic
         public abstract void makeRep();
         public static bool operator <(Term term1, Term term2)
         {
-            if (term1.year < term2.year)
+            if (term1.academicYear.year < term2.academicYear.year )
             {
                 return true;
             }
-            else if (term1.year == term2.year && term1.term < term2.term)
+            else if (term1.academicYear.year == term2.academicYear.year && term1.term < term2.term)
             {
                 return true;
             }
@@ -202,11 +202,11 @@ namespace TermLogic
         }
         public static bool operator >(Term term1, Term term2)
         {
-            if (term1.year > term2.year)
+            if (term1.academicYear.year > term2.academicYear.year)
             {
                 return true;
             }
-            else if (term1.year == term2.year && term1.term > term2.term)
+            else if (term1.academicYear.year == term2.academicYear.year && term1.term > term2.term)
             {
                 return true;
             }
@@ -217,7 +217,12 @@ namespace TermLogic
         }
         public static bool operator ==(Term term1, Term term2)
         {
-            return (term1.year == term2.year) && (term1.term == term2.term);
+            if (object.ReferenceEquals(term1, null))
+            {
+                return object.ReferenceEquals(term2, null);
+            }
+
+            return term1.Equals(term2);
         }
         public static bool operator !=(Term term1, Term term2)
         {
@@ -250,7 +255,8 @@ namespace TermLogic
             {
                 return false;
             }
-            return this == (Term)obj;
+            return this.term == ((Term)obj).term
+                && this.year == ((Term)obj).year;
         }
         public override int GetHashCode()
         {

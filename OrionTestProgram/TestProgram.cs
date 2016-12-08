@@ -51,7 +51,7 @@ namespace OrionTestProgram
             {
                 Console.WriteLine(ter.ToString() + ": " + dict[ter]);
             }
-            */
+            
 
             OrionTerm j = new OrionTerm("20172");
             OrionTerm ij = new OrionTerm("20001");
@@ -63,7 +63,20 @@ namespace OrionTestProgram
             }
 
             StateReportingYear year = 1 + ij.getStateReportingYear() + 1;
-            
+          
+
+            OrionTerm term = new OrionTerm("20001");
+            OrionTerm term1 = new OrionTerm("20172");
+
+            while (term < term1)
+            {
+                term++;
+                Console.WriteLine(term + ":" + term.getStateReportingYear());
+            }  */
+
+            OrionTerm term = null;
+
+            Console.WriteLine(term == null);
 
 /*
 
