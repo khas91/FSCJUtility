@@ -63,32 +63,21 @@ namespace OrionTestProgram
             }
 
             StateReportingYear year = 1 + ij.getStateReportingYear() + 1;
-          
+          */
 
-            OrionTerm term = new OrionTerm("20001");
+            OrionTerm term = new OrionTerm("20101");
             OrionTerm term1 = new OrionTerm("20172");
 
-            while (term < term1)
+            StateReportingTermShort term2 = new StateReportingTermShort("316");
+
+
+            while (term <= term1)
             {
-                term++;
                 Console.WriteLine(term + ":" + term.getStateReportingYear());
-            }  */
-
-            OrionTerm term = null;
-
-            Console.WriteLine(term == null);
-
-/*
-
-            OrionTerm term = new OrionTerm("19723");
-            OrionTerm term1 = new OrionTerm("20172");
-
-            while (term < term1)
-            {
-                Console.WriteLine(term.ToString() + ":" + term.ToStateReportingTermShort());
                 term++;
             }
-*/
+
+            Console.WriteLine(term);
         }
     }
 }

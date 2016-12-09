@@ -184,7 +184,8 @@ namespace TermLogic
 
             makeRep();
         }
-        public abstract void makeRep();
+        internal abstract void makeRep();
+
         public static bool operator <(Term term1, Term term2)
         {
             if (term1.academicYear.year < term2.academicYear.year )
@@ -215,6 +216,8 @@ namespace TermLogic
                 return false;
             }
         }
+
+
         public static bool operator ==(Term term1, Term term2)
         {
             if (object.ReferenceEquals(term1, null))
@@ -272,6 +275,17 @@ namespace TermLogic
 
         }
 
+        // ********************************************************************************
+        /// <summary>
+        /// Initializes a term object based on a string representation as the term would be represented in Orion.\n
+        /// Terms can be compared to each other using primitive operators.<para />
+        /// Terms can be incremented using integers and the primitive addition operator.<para />
+        /// Terms can be subtracted from each other using the primitive subtraction operator. The result represents the number of terms between them.
+        /// </summary>
+        /// <param name="rep">The string representation of the term (YYYYT)</param>
+        /// <returns></returns>
+        /// <created>Stuart Pierson,12/9/2016</created>
+        // ********************************************************************************
         public OrionTerm(String rep)
             : base((rep.Substring(4, 1) == "1" ? int.Parse(rep.Substring(0, 4)) - 1 : int.Parse(rep.Substring(0, 4))), 
             int.Parse(rep.Substring(4, 1)))
@@ -279,7 +293,7 @@ namespace TermLogic
 
         }
 
-        public override void makeRep()
+        internal override void makeRep()
         {
             if (name == TermName.FALL)
             {
@@ -378,6 +392,18 @@ namespace TermLogic
 
         }
 
+        // ********************************************************************************
+        /// <summary>
+        /// Creates a state reporting term object based on a 3 digit string representation.
+        /// Terms can be compared to each other using primitive operators.<para />
+        /// Terms can be incremented using integers and the primitive addition operator.<para />
+        /// Terms can be subtracted from each other using the primitive subtraction operator. The result represents the number of terms between them.
+        /// </summary>
+        /// <param name="rep">A String representation of the state reporting term. (YYT)</param>
+        /// <returns></returns>
+        /// <created>Stuart Pierson,12/9/2016</created>
+        /// <changed>Stuart Pierson,12/9/2016</changed>
+        // ********************************************************************************
         public StateReportingTermShort(String rep)
             : base(int.Parse(rep.Substring(1, 2)) < 49 ? int.Parse("20" + rep.Substring(1, 2)) : int.Parse("19" + rep.Substring(1, 2)),
             rep[0] == '1' ? 3 : (rep[0] == '2' ? 1 : 2))
@@ -385,7 +411,7 @@ namespace TermLogic
 
         }
 
-        public override void makeRep()
+        internal override void makeRep()
         {
             if (this.name == TermName.SUMMER)
             {
