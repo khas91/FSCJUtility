@@ -67,15 +67,13 @@ namespace OrionTestProgram
 
             OrionTerm term = new OrionTerm("20101");
             OrionTerm term1 = new OrionTerm("20172");
-
-            StateReportingTermShort term2 = new StateReportingTermShort("316");
-
-
-            while (term <= term1)
+            
+            for (OrionTerm i = term; i < term1; i++)
             {
-                Console.WriteLine(term + ":" + term.getStateReportingYear());
-                term++;
+                Console.WriteLine(i);
             }
+
+            Console.WriteLine("dub");
 
             Console.WriteLine(term);
         }
