@@ -72,6 +72,18 @@ namespace TermLogic
 
         public StateReportingTermShort getNthTerm(int termNum)
         {
+            switch (termNum)
+            {
+                case 1:
+                    return new StateReportingTermShort(this.year, 3);
+                case 2:
+                    return new StateReportingTermShort(this.year, 1);
+                case 3:
+                    return new StateReportingTermShort(this.year, 2);
+                default:
+                    throw new ArgumentException() ;
+            }
+
             return new StateReportingTermShort(this.year, termNum);
         }
     }
