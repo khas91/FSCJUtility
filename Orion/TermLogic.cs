@@ -69,6 +69,11 @@ namespace TermLogic
                 return this.year == term.year;
             }
         }
+
+        public StateReportingTermShort getNthTerm(int termNum)
+        {
+            return new StateReportingTermShort(this.year, termNum);
+        }
     }
     public class AcademicYear
     {
@@ -132,6 +137,11 @@ namespace TermLogic
             {
                 return this.year == term.year;
             }
+        }
+
+        public OrionTerm getNthTerm(int termNum)
+        {
+            return new OrionTerm(this.year, termNum);
         }
     }
 
