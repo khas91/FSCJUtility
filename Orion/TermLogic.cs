@@ -70,12 +70,21 @@ namespace TermLogic
             }
         }
 
+        // ********************************************************************************
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="termNum">Interpreted as the nth term within the State Reporting Term, i.e. if 1 is input, the summer term will be returned</param>
+        /// <returns></returns>
+        /// <created>sjp,1/13/2017</created>
+        /// <changed>sjp,1/13/2017</changed>
+        // ********************************************************************************
         public StateReportingTermShort getNthTerm(int termNum)
         {
             switch (termNum)
             {
                 case 1:
-                    return new StateReportingTermShort(this.year, 3);
+                    return new StateReportingTermShort(this.year - 1, 3);
                 case 2:
                     return new StateReportingTermShort(this.year, 1);
                 case 3:
@@ -83,8 +92,6 @@ namespace TermLogic
                 default:
                     throw new ArgumentException() ;
             }
-
-            return new StateReportingTermShort(this.year, termNum);
         }
     }
     public class AcademicYear

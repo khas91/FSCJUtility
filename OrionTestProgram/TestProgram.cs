@@ -66,7 +66,9 @@ namespace OrionTestProgram
           */
 
             OrionTerm term = new OrionTerm("20101");
-            OrionTerm term1 = new OrionTerm("20172");
+            OrionTerm term1 = new OrionTerm("20171");
+
+            Console.WriteLine(term1.getStateReportingYear().prevReportingYear().getNthTerm(1).ToOrionTerm());
             
             for (OrionTerm i = term; i < term1; i++)
             {
