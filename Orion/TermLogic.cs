@@ -452,7 +452,7 @@ namespace TermLogic
             }
             else
             {
-                this.rep = "3" + this.year.ToString().Substring(2, 2);
+                this.rep = "3" + (this.year + 1).ToString().Substring(2, 2);
             }
         }
 
@@ -522,6 +522,15 @@ namespace TermLogic
         public OrionTerm ToOrionTerm()
         {
             return new OrionTerm(this.year, this.term);
+        }
+        public static StateReportingTermShort operator ++(StateReportingTermShort term)
+        {
+            return term.doAddition(1);
+        }
+
+        public static StateReportingTermShort operator --(StateReportingTermShort term)
+        {
+            return term.doAddition(-1);
         }
     }
 
