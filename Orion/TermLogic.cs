@@ -319,7 +319,10 @@ namespace TermLogic
             : base((rep.Substring(4, 1) == "1" ? int.Parse(rep.Substring(0, 4)) - 1 : int.Parse(rep.Substring(0, 4))), 
             int.Parse(rep.Substring(4, 1)))
         {
-
+            if (!(new char[] { '1', '2', '3' }).Contains(rep[4]))
+            {
+                throw new ArgumentException("Invalid Term");
+            }
         }
 
         internal override void makeRep()
@@ -437,7 +440,10 @@ namespace TermLogic
             : base(int.Parse(rep.Substring(1, 2)) < 49 ? int.Parse("20" + rep.Substring(1, 2)) : int.Parse("19" + rep.Substring(1, 2)),
             rep[0] == '1' ? 3 : (rep[0] == '2' ? 1 : 2))
         {
-
+            if (!(new char[]{ '1','2','3'}).Contains(rep[0]))
+            {
+                throw new ArgumentException("Invalid Term");
+            }
         }
 
         internal override void makeRep()
@@ -533,7 +539,7 @@ namespace TermLogic
             return term.doAddition(-1);
         }
     }
-
+    
 }
 
 namespace Academic

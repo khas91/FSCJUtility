@@ -65,19 +65,7 @@ namespace OrionTestProgram
             StateReportingYear year = 1 + ij.getStateReportingYear() + 1;
           */
 
-            OrionTerm term = new OrionTerm("20101");
-            OrionTerm term1 = new OrionTerm("20171");
 
-            Console.WriteLine(term1.getStateReportingYear().prevReportingYear().getNthTerm(1).ToOrionTerm());
-            
-            for (OrionTerm i = term; i < term1; i++)
-            {
-                Console.WriteLine(i);
-            }
-
-            Console.WriteLine("dub");
-
-            Console.WriteLine(term);
         }
     }
 }
