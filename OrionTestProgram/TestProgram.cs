@@ -63,9 +63,15 @@ namespace OrionTestProgram
             }
 
             StateReportingYear year = 1 + ij.getStateReportingYear() + 1;
-          */
+            */
 
+            PeopleSoftTerm term1 = new PeopleSoftTerm("1988");
+            PeopleSoftTerm term2 = new PeopleSoftTerm("2175");
 
+            for (PeopleSoftTerm term = term1; term < term2; term++)
+            {
+                Console.WriteLine(term);
+            }
         }
     }
 }

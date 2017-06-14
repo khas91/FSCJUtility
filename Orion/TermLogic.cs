@@ -539,7 +539,69 @@ namespace TermLogic
             return term.doAddition(-1);
         }
     }
-    
+
+    public class PeopleSoftTerm : Term
+    {
+        public PeopleSoftTerm(int year, int term) : base(year, term)
+        {
+        }
+
+        public PeopleSoftTerm(String rep)
+            : base(int.Parse((rep[0] == '1' ? "19" : "20") + rep.Substring(1, 2)), rep[3] == '2' ? 2 : (rep[3] == '5' ? 3 : 1))
+        {
+
+        }
+
+        internal override void makeRep()
+        {
+            int year = this.year;
+            int term = this.term;
+
+            this.rep = year.ToString().Substring(0, 1) + year.ToString().Substring(2, 2) + (term == 1 ? "8" : (term == 2 ? "2" : "5"));
+        }
+
+        protected PeopleSoftTerm doAddition(int numTerms)
+        {
+            int term = this.term;
+            int year = this.year;
+
+            while (numTerms > 0)
+            {
+                if (term == 3)
+                {
+                    term = 1;
+                }
+                else if (term == 2)
+                {
+                    term++;
+                }
+                else
+                {
+                    term++;
+                    year++;
+                }
+
+                numTerms--;
+            }
+
+            return new PeopleSoftTerm(year, term);
+        }
+
+        public static PeopleSoftTerm operator ++(PeopleSoftTerm term)
+        {
+            return term.doAddition(1);
+        }
+
+        public OrionTerm ToOrionTerm()
+        {
+            return new OrionTerm(year, term);
+        }
+
+        public StateReportingTermShort ToStateReportingTermShort()
+        {
+            return new StateReportingTermShort(year, term);
+        }
+    }
 }
 
 namespace Academic
